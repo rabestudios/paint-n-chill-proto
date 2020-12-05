@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const statusSlice = createSlice({
-  name: "status",
+const canvasSlice = createSlice({
+  name: "canvas",
   initialState: {
     isDrawing: false,
     strokeStyle: "black",
     lineWidth: 5,
     scale: 2,
+    drawStack: [],
   },
   reducers: {
     setIsDrawing(state, action) {
@@ -21,6 +22,9 @@ const statusSlice = createSlice({
     setScale(state, action) {
       state.scale = action.payload;
     },
+    pushToDrawStack(state, action) {
+      state.drawStack.push(action.payload);
+    },
   },
 });
 
@@ -29,6 +33,7 @@ export const {
   setStrokeStyle,
   setLineWidth,
   setScale,
-} = statusSlice.actions;
+  pushToDrawStack,
+} = canvasSlice.actions;
 
-export default statusSlice.reducer;
+export default canvasSlice.reducer;

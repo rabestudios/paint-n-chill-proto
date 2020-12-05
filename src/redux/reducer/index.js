@@ -1,6 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import statusReducer from "../slices/status.slice";
+import canvasReducer from "redux/slices/canvas.slice";
 
 export default combineReducers({
-  appStatus: statusReducer,
+  canvas: canvasReducer,
 });

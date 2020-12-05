@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import { setIsDrawing } from "redux/slices/status.slice";
+import { setIsDrawing, pushToDrawStack } from "redux/slices/canvas.slice";
 import Canvas from "../index";
 
-const mapStateToProps = (state) => ({ ...state.appStatus });
+const mapStateToProps = (state) => ({ ...state.canvas });
 
-const mapDispatch = { setIsDrawing };
+const mapDispatch = { setIsDrawing, pushToDrawStack };
 
 export default connect(mapStateToProps, mapDispatch)(Canvas);

@@ -25,6 +25,7 @@ module.exports = {
     "react/jsx-one-expression-per-line": "off",
     "object-curly-newline": "off",
     "no-param-reassign": "off",
+    "no-plusplus": "off",
     quotes: [2, "double"],
   },
 };
