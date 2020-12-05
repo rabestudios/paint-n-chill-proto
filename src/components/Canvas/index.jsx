@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import CanvasContext from "context/canvas.context";
 import useWindowSize from "hooks/useWindowSize";
@@ -37,7 +37,7 @@ const Canvas = (props) => {
     [drawStack],
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = size[0] * 2;
     canvas.height = size[1] * 2;
@@ -49,7 +49,7 @@ const Canvas = (props) => {
     context.lineCap = "round";
     renderDrawStack(context);
     contextRef.current = context;
-  }, [strokeStyle, lineWidth, scale, size, renderDrawStack]);
+  }, [strokeStyle, lineWidth, scale, size]);
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
