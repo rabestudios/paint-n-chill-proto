@@ -1,10 +1,11 @@
+import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import CanvasContext from "context/canvas.context";
-import { useEffect, useRef, useState } from "react";
 
-const Canvas = () => {
+const Canvas = (props) => {
+  const { isDrawing, strokeStyle, lineWidth, scale, setIsDrawing } = props;
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
-  const [isDrawing, setIsDrawing] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,12 +15,12 @@ const Canvas = () => {
     canvas.style.height = `${window.innerHeight}px`;
 
     const context = canvas.getContext("2d");
-    context.scale(2, 2);
+    context.scale(scale, scale);
     context.lineCap = "round";
-    context.strokeStyle = "black";
-    context.lineWidth = 5;
+    context.strokeStyle = strokeStyle;
+    context.lineWidth = lineWidth;
     contextRef.current = context;
-  }, []);
+  }, [strokeStyle, lineWidth, scale]);
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
@@ -52,6 +53,14 @@ const Canvas = () => {
       />
     </CanvasContext.Provider>
   );
+};
+
+Canvas.propTypes = {
+  isDrawing: PropTypes.bool.isRequired,
+  strokeStyle: PropTypes.string.isRequired,
+  lineWidth: PropTypes.number.isRequired,
+  scale: PropTypes.number.isRequired,
+  setIsDrawing: PropTypes.func.isRequired,
 };
 
 export default Canvas;

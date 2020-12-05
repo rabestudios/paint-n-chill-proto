@@ -24,6 +24,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "object-curly-newline": "off",
+    "no-param-reassign": "off",
     quotes: [2, "double"],
   },
 };

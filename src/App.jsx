@@ -1,4 +1,4 @@
-import Canvas from "components/Canvas";
+import Canvas from "components/Canvas/container";
 
 function App() {
   return <Canvas />;
