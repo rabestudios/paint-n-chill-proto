@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { Provider } from "react-redux";
 import App from "App";
-import store from "redux/store";
+import ErrorBoundary from "components/common/ErrorBoundary";
+import AppThemeProvider from "components/common/AppThemeProvider";
+import AppProvider from "components/common/AppProvider";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ErrorBoundary>
+    <AppThemeProvider>
+      <AppProvider>
+        <App />
+      </AppProvider>
+    </AppThemeProvider>
+  </ErrorBoundary>,
   document.getElementById("root"),
 );
 

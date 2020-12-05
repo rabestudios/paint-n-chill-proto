@@ -1,18 +1,7 @@
-import Canvas from "components/Canvas/container";
-import InterfaceOverlay from "components/ui/InterfaceOverlay";
-import styled from "styled-components";
-
-const MainContainer = styled.div`
-  display: flex;
-`;
+import Router from "components/common/Router";
 
 function App() {
-  return (
-    <MainContainer>
-      <Canvas />
-      <InterfaceOverlay />
-    </MainContainer>
-  );
+  return <Router />;
 }
 
 export default App;
