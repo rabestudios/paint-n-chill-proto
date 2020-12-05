@@ -1,18 +1,20 @@
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import CanvasContext from "context/canvas.context";
+import useWindowSize from "hooks/useWindowSize";
 
 const Canvas = (props) => {
   const { isDrawing, strokeStyle, lineWidth, scale, setIsDrawing } = props;
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
+  const size = useWindowSize();
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    canvas.width = window.innerWidth * 2;
-    canvas.height = window.innerHeight * 2;
-    canvas.style.width = `${window.innerWidth}px`;
-    canvas.style.height = `${window.innerHeight}px`;
+    canvas.width = size[0] * 2;
+    canvas.height = size[1] * 2;
+    canvas.style.width = `${size[0]}px`;
+    canvas.style.height = `${size[1]}px`;
 
     const context = canvas.getContext("2d");
     context.scale(scale, scale);
@@ -20,7 +22,7 @@ const Canvas = (props) => {
     context.strokeStyle = strokeStyle;
     context.lineWidth = lineWidth;
     contextRef.current = context;
-  }, [strokeStyle, lineWidth, scale]);
+  }, [strokeStyle, lineWidth, scale, size]);
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
