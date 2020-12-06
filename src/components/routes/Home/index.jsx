@@ -25,6 +25,7 @@ const StyledButton = styled(Button)`
   margin: 10px;
   padding: 10px;
   font-weight: bold;
+  color: white;
 `;
 
 const Home = () => {
