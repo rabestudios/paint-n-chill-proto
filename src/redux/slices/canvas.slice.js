@@ -25,6 +25,9 @@ const canvasSlice = createSlice({
     pushToDrawStack(state, action) {
       state.drawStack.push(action.payload);
     },
+    clearDrawStack(state) {
+      state.drawStack = [];
+    },
   },
 });
 
@@ -34,6 +37,7 @@ export const {
   setLineWidth,
   setScale,
   pushToDrawStack,
+  clearDrawStack
 } = canvasSlice.actions;
 
 export default canvasSlice.reducer;
