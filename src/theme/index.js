@@ -6,10 +6,10 @@ export const theme = createMuiTheme({
       default: "#F5F6F2",
     },
     primary: {
-      main: "#9E8680",
+      main: "#EB9F77",
     },
     secondary: {
-      main: "#9B9BA7",
+      main: "#9E8680",
     },
   },
 });
