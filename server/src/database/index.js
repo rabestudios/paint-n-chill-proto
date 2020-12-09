@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const { generateCode, getPlayerDetailsForRoom } = require('../utils/helper');
 
 class Database {
@@ -64,9 +63,18 @@ class Database {
     pushToRoomDrawStack(roomCode, event) {
         const room = this.getRoom(roomCode);
         if (room) {
-            const id = uuidv4();
-            const stackEvent = {id, ...event};
-            room.drawStack.push(stackEvent);
+            // each event has ID coming from FE
+            room.drawStack.push(event);
+        }
+    }
+
+    deleteFromRoomDrawStack(roomCode, eventId) {
+        const room = this.getRoom(roomCode);
+        if (room) {
+            const delIdx = room.drawStack.findIndex(e => e.id === eventId);
+            if (delIdx !== -1) {
+                room.drawStack.splice(delIdx, 1);
+            }
         }
     }
 
