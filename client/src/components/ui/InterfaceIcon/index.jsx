@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { IconButton, Tooltip } from "@material-ui/core";
 
 const InterfaceIcon = (props) => {
-  const { children, label, onClick } = props;
+  const { children, label, onClick, ...rest } = props;
 
   return (
     <Tooltip title={label} placement="right">
-      <IconButton onClick={onClick}>{children}</IconButton>
+      <IconButton onClick={onClick} {...rest}>{children}</IconButton>
     </Tooltip>
   );
 };
