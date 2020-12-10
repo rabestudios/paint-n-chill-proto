@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import RoomDialog from "./RoomDialog/container";
 
 const MainContainer = styled.div`
   display: flex;
@@ -30,14 +31,23 @@ const StyledButton = styled(Button)`
 
 const Home = () => {
   const history = useHistory();
+  const [open, setIsOpen] = useState(false);
+
+  const handleOpen = useCallback(() => {
+    setIsOpen(true);
+  }, [setIsOpen]);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
   const handleHost = useCallback(() => {
     history.push("/draw");
   }, [history]);
 
   const handleJoin = useCallback(() => {
-    history.push("/draw");
-  }, [history]);
+    handleOpen();
+  }, [handleOpen]);
 
   return (
     <MainContainer>
@@ -56,6 +66,7 @@ const Home = () => {
           Join
         </StyledButton>
       </ButtonContainer>
+      <RoomDialog onOpen={open} onClose={handleClose} isOpen={open} />
     </MainContainer>
   );
 };
