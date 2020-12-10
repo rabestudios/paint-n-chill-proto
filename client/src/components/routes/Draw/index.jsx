@@ -13,6 +13,7 @@ const Draw = ({
   setRoomHost,
   setIsHost,
   isConnected,
+  setRoomDrawStack,
 }) => {
   const history = useHistory();
   const socket = useSocket();
@@ -21,7 +22,6 @@ const Draw = ({
     if (!isConnected) {
       // go to home if not connected
       history.push("/");
-      return () => {};
     }
 
     const handleRoomConnect = ({ player }) => {
@@ -37,15 +37,21 @@ const Draw = ({
       }
     };
 
+    const handleUpdateDrawStack = ({ drawStack }) => {
+      setRoomDrawStack(drawStack);
+    };
+
     if (socket) {
       socket.on("room-connect", handleRoomConnect);
       socket.on("room-disconnect", handleRoomDisconnect);
+      socket.on("update-room-draw-stack", handleUpdateDrawStack);
     }
 
     return () => {
       if (socket) {
         socket.off("room-connect", handleRoomConnect);
         socket.off("room-disconnect", handleRoomDisconnect);
+        socket.off("update-room-draw-stack", handleUpdateDrawStack);
       }
     };
   }, [socket, history, isConnected]);

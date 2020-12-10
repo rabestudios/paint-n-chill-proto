@@ -111,6 +111,9 @@ const multiplayerSlice = createSlice({
         state.room.players[playerIdx].playerInfo = playerInfo;
       }
     },
+    setRoomDrawStack(state, action) {
+      state.room.drawStack = action.payload;
+    },
   },
 });
 
@@ -127,6 +130,7 @@ export const {
   removePlayerFromRoom,
   setIsHost,
   updateRoomPlayerInfo,
+  setRoomDrawStack,
 } = multiplayerSlice.actions;
 
 export default multiplayerSlice.reducer;

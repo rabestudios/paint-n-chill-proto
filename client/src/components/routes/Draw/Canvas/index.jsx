@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import CanvasContext from "context/canvas.context";
 import useWindowSize from "hooks/useWindowSize";
+import useSocket from "hooks/useSocket";
+import { v4 as uuidv4 } from "uuid";
 
 const Canvas = (props) => {
   const {
@@ -10,17 +12,19 @@ const Canvas = (props) => {
     lineWidth,
     scale,
     setIsDrawing,
-    drawStack,
-    pushToDrawStack,
+    // drawStack,
+    // pushToDrawStack,
+    room,
   } = props;
   const [curPath, setCurPath] = useState([]);
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const size = useWindowSize();
+  const socket = useSocket();
 
   const renderDrawStack = useCallback(
     (context) => {
-      for (const item of drawStack) {
+      for (const item of room.drawStack) {
         context.strokeStyle = item.strokeStyle;
         context.lineWidth = item.lineWidth;
         context.beginPath();
@@ -34,7 +38,7 @@ const Canvas = (props) => {
         context.closePath();
       }
     },
-    [drawStack],
+    [room.drawStack],
   );
 
   useEffect(() => {
@@ -49,7 +53,7 @@ const Canvas = (props) => {
     context.lineCap = "round";
     renderDrawStack(context);
     contextRef.current = context;
-  }, [strokeStyle, lineWidth, scale, size]);
+  }, [strokeStyle, lineWidth, scale, size, renderDrawStack]);
 
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
@@ -62,11 +66,16 @@ const Canvas = (props) => {
   };
 
   const finishDrawing = () => {
-    pushToDrawStack({
+    const event = {
+      id: uuidv4(),
       path: curPath,
       strokeStyle,
       lineWidth,
-    });
+    };
+    // pushToDrawStack(event);
+    if (socket) {
+      socket.emit("draw", { roomCode: room.code, event });
+    }
     setCurPath([]);
     contextRef.current.closePath();
     setIsDrawing(false);
@@ -110,7 +119,8 @@ Canvas.propTypes = {
   scale: PropTypes.number.isRequired,
   setIsDrawing: PropTypes.func.isRequired,
   drawStack: PropTypes.array.isRequired,
-  pushToDrawStack: PropTypes.func.isRequired,
+  // pushToDrawStack: PropTypes.func.isRequired,
+  room: PropTypes.object.isRequired,
 };
 
 export default Canvas;

@@ -105,6 +105,20 @@ io.on('connection', socket => {
        const user = db.getUser(playerId);
        leaveRoom(socket, roomCode, user, host);
     });
+
+    socket.on('draw', (data) => {
+        const { roomCode, event } = data;
+        console.log(`(${roomCode}) new drawing event:`, event.id);
+        const newStack = db.pushToRoomDrawStack(roomCode, event);
+        if (newStack) {
+            socket.emit("update-room-draw-stack", {
+                drawStack: newStack
+            });
+            socket.broadcast.to(roomCode).emit("update-room-draw-stack", {
+                drawStack: newStack
+            });
+        }
+    })
 });
 
 const PORT = process.env.PORT || 8080;

@@ -4,6 +4,7 @@ import {
   removePlayerFromRoom,
   setRoomHost,
   setIsHost,
+  setRoomDrawStack,
 } from "redux/slices/multiplayer.slice";
 import Draw from "../index";
 
@@ -17,6 +18,7 @@ const mapDispatch = {
   removePlayerFromRoom,
   setRoomHost,
   setIsHost,
+  setRoomDrawStack,
 };
 
 export default connect(mapStateToProps, mapDispatch)(Draw);

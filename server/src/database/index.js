@@ -65,7 +65,9 @@ class Database {
         if (room) {
             // each event has ID coming from FE
             room.drawStack.push(event);
+            return room.drawStack;
         }
+        return undefined;
     }
 
     deleteFromRoomDrawStack(roomCode, eventId) {
