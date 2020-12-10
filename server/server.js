@@ -71,6 +71,40 @@ io.on('connection', socket => {
         });
     });
 
+    socket.on('host-room', (data) => {
+       const { hostId } = data;
+       console.log('user started hosting a game', hostId);
+       const newRoom = db.createRoom(hostId);
+       const rooms = db.getRooms();
+       const user = db.getUser(hostId);
+       joinRoom(socket, newRoom, user);
+       socket.emit('update-room-list', { rooms });
+       socket.broadcast.emit('update-room-list', {
+           rooms: [newRoom]
+       });
+    });
+
+    socket.on('join-room', (data) => {
+       const { playerId, roomCode, playerInfo } = data;
+       const user = db.setUserInfo(playerId, playerInfo);
+       if (user) {
+           const res = db.addPlayerToRoom(roomCode, playerId);
+           if (res) {
+               const { newDetails, room } = res;
+               const updatedUser = db.setUserInfo(playerId, playerInfo);
+               if (updatedUser) {
+                   joinRoom(socket, room, newDetails);
+               }
+           }
+       }
+    });
+
+    socket.on('leave-room', (data) => {
+       const { roomCode, playerId } = data;
+       const host = db.removePlayerFromRoom(roomCode, socket.id);
+       const user = db.getUser(playerId);
+       leaveRoom(socket, roomCode, user, host);
+    });
 });
 
 const PORT = process.env.PORT || 8080;

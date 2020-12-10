@@ -9,6 +9,9 @@ const App = ({
   removeUser,
   removePlayerFromRoom,
   removeRoom,
+  setIsConnected,
+  setRoom,
+  setPlayerInfo,
 }) => {
   const socket = useSocket(config.server.baseUrl, user);
 
@@ -28,6 +31,12 @@ const App = ({
 
     socket.on("remove-room", ({ roomCode }) => {
       removeRoom(roomCode);
+    });
+
+    socket.on("set-connection", ({ isConnected, room, playerInfo }) => {
+      setIsConnected(isConnected);
+      setRoom(room);
+      setPlayerInfo(playerInfo);
     });
   }
 

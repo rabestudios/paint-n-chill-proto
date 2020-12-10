@@ -7,11 +7,15 @@ const userSlice = createSlice({
   },
   reducers: {
     setPlayerName(state, action) {
-      state.displayName = action.payload;
+      state.name = action.payload;
+    },
+    setPlayerInfo(state, action) {
+      const newInfo = action.payload;
+      state.displayName = newInfo.displayName;
     },
   },
 });
 
-export const { setPlayerName } = userSlice.actions;
+export const { setPlayerName, setPlayerInfo } = userSlice.actions;
 
 export default userSlice.reducer;
