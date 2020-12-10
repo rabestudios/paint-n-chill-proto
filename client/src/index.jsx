@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "App";
+import App from "App/container";
 import ErrorBoundary from "components/common/ErrorBoundary";
 import AppThemeProvider from "components/common/AppThemeProvider";
 import AppProvider from "components/common/AppProvider";

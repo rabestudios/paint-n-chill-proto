@@ -49,6 +49,7 @@ const multiplayerSlice = createSlice({
         state.room.players.splice(playerIdx, 1);
       }
     },
+
     updateUserList(state, action) {
       const { onlineUsers } = state;
       const serverUsers = action.payload;
