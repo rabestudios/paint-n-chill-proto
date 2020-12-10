@@ -91,9 +91,9 @@ io.on('connection', socket => {
            const res = db.addPlayerToRoom(roomCode, playerId);
            if (res) {
                const { newDetails, room } = res;
-               const updatedUser = db.setUserInfo(playerId, playerInfo);
+               const updatedUser = db.setUserInfo(playerId, newDetails);
                if (updatedUser) {
-                   joinRoom(socket, room, newDetails);
+                   joinRoom(socket, room, updatedUser);
                }
            }
        }

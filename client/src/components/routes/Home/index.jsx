@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import useSocket from "hooks/useSocket";
 import RoomDialog from "./RoomDialog/container";
 
 const MainContainer = styled.div`
@@ -29,9 +30,16 @@ const StyledButton = styled(Button)`
   color: white;
 `;
 
-const Home = () => {
+const Home = ({ isConnected, setIsHost }) => {
   const history = useHistory();
+  const socket = useSocket();
   const [open, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isConnected) {
+      history.push("/draw");
+    }
+  }, [isConnected, history]);
 
   const handleOpen = useCallback(() => {
     setIsOpen(true);
@@ -42,12 +50,18 @@ const Home = () => {
   }, [setIsOpen]);
 
   const handleHost = useCallback(() => {
-    history.push("/draw");
-  }, [history]);
+    if (!isConnected) {
+      setIsHost(true);
+      if (socket) {
+        socket.emit("host-room", { hostId: socket.id });
+      }
+    }
+  }, [setIsHost, socket, isConnected]);
 
   const handleJoin = useCallback(() => {
+    setIsHost(false);
     handleOpen();
-  }, [handleOpen]);
+  }, [handleOpen, setIsHost]);
 
   return (
     <MainContainer>

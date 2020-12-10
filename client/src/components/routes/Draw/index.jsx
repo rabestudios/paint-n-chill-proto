@@ -4,6 +4,7 @@ import { MainContainer } from "components/routes/Draw/styles";
 import useSocket from "hooks/useSocket";
 import { useEffect } from "react";
 import DrawHeader from "components/ui/DrawHeader";
+import { useHistory } from "react-router-dom";
 
 const Draw = ({
   room,
@@ -11,10 +12,18 @@ const Draw = ({
   removePlayerFromRoom,
   setRoomHost,
   setIsHost,
+  isConnected,
 }) => {
+  const history = useHistory();
   const socket = useSocket();
 
   useEffect(() => {
+    if (!isConnected) {
+      // go to home if not connected
+      history.push("/");
+      return () => {};
+    }
+
     const handleRoomConnect = ({ player }) => {
       if (player.id !== socket.id) {
         addPlayerToRoom(player);
@@ -39,7 +48,7 @@ const Draw = ({
         socket.off("room-disconnect", handleRoomDisconnect);
       }
     };
-  }, [socket]);
+  }, [socket, history, isConnected]);
 
   return (
     <MainContainer>
