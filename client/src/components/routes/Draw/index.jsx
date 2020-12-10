@@ -1,10 +1,12 @@
 import Canvas from "components/routes/Draw/Canvas/container";
-import InterfaceOverlay from "components/ui/InterfaceOverlay/container";
+import Toolbar from "components/ui/Toolbar/container";
 import { MainContainer } from "components/routes/Draw/styles";
 import useSocket from "hooks/useSocket";
 import { useEffect } from "react";
+import DrawHeader from "components/ui/DrawHeader";
 
 const Draw = ({
+  room,
   addPlayerToRoom,
   removePlayerFromRoom,
   setRoomHost,
@@ -41,8 +43,9 @@ const Draw = ({
 
   return (
     <MainContainer>
+      <DrawHeader roomCode={room.code} />
       <Canvas />
-      <InterfaceOverlay />
+      <Toolbar />
     </MainContainer>
   );
 };

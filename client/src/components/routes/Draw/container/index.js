@@ -7,7 +7,7 @@ import {
 } from "redux/slices/multiplayer.slice";
 import Draw from "../index";
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({ room: state.multiplayer.room });
 
 const mapDispatch = {
   addPlayerToRoom,

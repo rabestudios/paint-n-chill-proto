@@ -12,7 +12,7 @@ const OverlayContainer = styled.div`
   z-index: 2;
 `;
 
-const InterfaceOverlay = (props) => {
+const Toolbar = (props) => {
   const { clearDrawStack } = props;
   const history = useHistory();
 
@@ -33,8 +33,8 @@ const InterfaceOverlay = (props) => {
   );
 };
 
-InterfaceOverlay.propTypes = {
+Toolbar.propTypes = {
   clearDrawStack: PropTypes.func.isRequired,
 };
 
-export default InterfaceOverlay;
+export default Toolbar;

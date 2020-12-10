@@ -8,7 +8,7 @@ const multiplayerSlice = createSlice({
     isConnected: false,
     isHost: false,
     room: {
-      code: "",
+      code: "Unknown",
       players: [],
       hostId: undefined,
       drawStack: [],
