@@ -12,8 +12,6 @@ const Canvas = (props) => {
     lineWidth,
     scale,
     setIsDrawing,
-    // drawStack,
-    // pushToDrawStack,
     room,
   } = props;
   const [curPath, setCurPath] = useState([]);
@@ -68,11 +66,10 @@ const Canvas = (props) => {
   const finishDrawing = () => {
     const event = {
       id: uuidv4(),
-      path: curPath,
+      path: curPath.filter((coord) => coord),
       strokeStyle,
       lineWidth,
     };
-    // pushToDrawStack(event);
     if (socket) {
       socket.emit("draw", { roomCode: room.code, event });
     }
