@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e462a80-eeee-4a48-ab6f-5da3238db100" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/routes/Draw/Canvas/container/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routes/Draw/Canvas/container/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/routes/Draw/Canvas/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routes/Draw/Canvas/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/routes/Draw/container/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routes/Draw/container/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/routes/Draw/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/routes/Draw/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/slices/multiplayer.slice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slices/multiplayer.slice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/src/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../server/src/database/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="7e462a80-eeee-4a48-ab6f-5da3238db100" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607489555483</updated>
       <workItem from="1607489558904" duration="13952000" />
-      <workItem from="1607602811191" duration="99000" />
+      <workItem from="1607602811191" duration="354000" />
     </task>
     <servers />
   </component>
