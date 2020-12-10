@@ -37,7 +37,7 @@ export const {
   setLineWidth,
   setScale,
   pushToDrawStack,
-  clearDrawStack
+  clearDrawStack,
 } = canvasSlice.actions;
 
 export default canvasSlice.reducer;
